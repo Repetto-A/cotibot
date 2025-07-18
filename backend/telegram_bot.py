@@ -230,9 +230,6 @@ Actualizar el precio de una máquina.
                     f"💰 Precio: ${final_price:,.2f}"
                 )
                 
-                if discount_percent > 0:
-                    caption += f"\n🎯 Descuento aplicado: {discount_percent:.0f}%"
-                
                 await update.message.reply_document(
                     document=pdf_file,
                     filename=f"cotizacion-{client_name.replace(' ', '-')}-{machine_code}.pdf",
