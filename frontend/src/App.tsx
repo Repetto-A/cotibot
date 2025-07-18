@@ -108,7 +108,7 @@ function App() {
         clientEmail: '', // Optional field
         clientCompany: '', // Optional field
         notes: `Dirección: ${form.clientAddress}\nCantidad: ${form.quantity}\nDescuento: ${form.discountPercent}%`,
-        applyDiscount: form.discountPercent > 0
+        discountPercent: form.discountPercent
       };
 
       const response = await fetch(getApiUrl(API_CONFIG.ENDPOINTS.GENERATE_QUOTE), {
