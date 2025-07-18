@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: agromaq-quotation-api-enhanced
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: DATABASE_URL
+        value: sqlite:///./agromaq_enhanced.db
+      - key: BOT_TOKEN
+        sync: false
+      - key: TELEGRAM_ADMIN_IDS
+        sync: false
+    healthCheckPath: /health

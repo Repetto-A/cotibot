@@ -1,0 +1,95 @@
+[
+  {
+    "categoria": "Acoplados rurales",
+    "productos": [
+      "Acoplado rural playo",
+      "Acoplado rural vaquero desmontable",
+      "Acoplado rural vaquero desmontable 2",
+      "Acoplado rural vaquero fijo",
+      "Acoplado totalmente desmontable",
+      "Acoplado volcador manual o hidráulico",
+      "Acoplado volcador trivuelo de uso rural"
+    ]
+  },
+  {
+    "categoria": "Acoplados tanque",
+    "productos": [
+      "Acoplado tanque 3000 Lts.",
+      "Acoplado tanque de 1500 Lts.",
+      "Acoplado tanque de plástico 12.000 Lts.",
+      "Acoplado tanque de plástico 1500 Lts.",
+      "Acoplado tanque de plástico 3500 Lts.",
+      "Acoplado tanque de plástico 7000 Lts.",
+      "Acoplado tanques rurales"
+    ]
+  },
+  {
+    "categoria": "Tolvas",
+    "productos": [
+      "Acoplado tolva cerealero 4 TT.",
+      "Acoplado tolva cerealero 8 TT.",
+      "Acoplado Tolva para semillas y fertilizantes de uso rural",
+      "Acoplado Tolva Para Semillas Y Fertilizantes De Uso Rural",
+      "Acoplado tolva para semillas y fertilizantes modelo A.T.F. 10",
+      "Acoplado tolva para semillas y fertilizantes modelo A.T.F. 14",
+      "Acoplado tolva para semillas y fertilizantes Modelo A.T.F. 24",
+      "Acoplados tolvas para semillas y fertilizantes Modelo A.T.F. 12"
+    ]
+  },
+  {
+    "categoria": "Cargadores y elevadores",
+    "productos": [
+      "Cargador y transportador de rollos hidráulico T.R.A. 6000",
+      "Elevador de rollos",
+      "Grúa giratoria hidráulica multipropósito de uso rural"
+    ]
+  },
+  {
+    "categoria": "Carretón",
+    "productos": [
+      "Carretón hidráulico con avantrén a bolillas"
+    ]
+  },
+  {
+    "categoria": "Otros implementos rurales",
+    "productos": [
+      "Comedero para hacienda transportable",
+      "Hoja niveladora para levante de 3 pts"
+    ]
+  },
+  {
+    "categoria": "Palas de arrastre",
+    "productos": [
+      "Pala de arrastre A 1500",
+      "Pala de arrastre A 1830",
+      "Pala de arrastre A 2000",
+      "Pala de arrastre A 2350",
+      "Pala hidráulica de descarga trasera"
+    ]
+  },
+  {
+    "categoria": "Rastras",
+    "productos": [
+      "Rastra de discos doble acción de tres puntos",
+      "Rastra de discos tiro excéntrico",
+      "Rastra de discos tiro excéntrico levante de tres",
+      "Rastra de discos tiro excéntrico transportable",
+      "Rastras de discos de doble acción"
+    ]
+  },
+  {
+    "categoria": "Sin fines (transportadores)",
+    "productos": [
+      "Sin fin para colocar en acoplados tolvas S.F. 150",
+      "Sin fin para colocar en acoplados tolvas S.F. 200",
+      "Sin fin transportable de uso agrícola S.F.T. 150",
+      "Sin fin transportable de uso agrícola S.F.T. 200"
+    ]
+  },
+  {
+    "categoria": "Tráilers",
+    "productos": [
+      "Tráiler balancín con rampas (de uso rural)"
+    ]
+  }
+]
