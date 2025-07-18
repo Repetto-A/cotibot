@@ -136,10 +136,10 @@ Actualizar el precio de una máquina.
             await update.message.reply_text(
                 "❌ *Uso incorrecto*\n\n"
                 "*Formato:*\n"
-                "`/cotizar <código> <cuit> <nombre> <teléfono> [--descuento]`\n\n"
+                "`/cotizar <código> <cuit> <nombre> <teléfono> [-descuento=15]`\n\n"
                 "*Ejemplo:*\n"
-                "`/cotizar ACO001 20-12345678-9 \"Juan Pérez\" +541112345678`\n\n"
-                "💡 Agrega `--descuento` al final para aplicar descuento del 10%",
+                "`/cotizar ACO001 20-12345678-9 \"Juan Pérez\" +541112345678 -descuento=15`\n\n"
+                "💡 Agrega `-descuento=XX` al final para aplicar un descuento variable (%)",
                 parse_mode='Markdown'
             )
             return
@@ -161,13 +161,20 @@ Actualizar el precio de una máquina.
         else:
             client_name = context.args[2]
             phone_index = 3
-            
+        
         if phone_index >= len(context.args):
             await update.message.reply_text("❌ Falta el número de teléfono")
             return
-            
+        
         client_phone = context.args[phone_index]
-        apply_discount = "--descuento" in context.args
+        # Buscar argumento de descuento
+        discount_percent = 0.0
+        for arg in context.args:
+            if arg.startswith("-descuento="):
+                try:
+                    discount_percent = float(arg.split("=", 1)[1])
+                except Exception:
+                    discount_percent = 0.0
         
         db = self.SessionLocal()
         try:
@@ -176,10 +183,10 @@ Actualizar el precio de una máquina.
                 await update.message.reply_text(f"❌ Máquina con código '{machine_code}' no encontrada.")
                 return
             
-            # Calculate final price
+            # Calcular precio final con descuento variable
             final_price = machine.price
-            if apply_discount:
-                final_price = machine.price * 0.9
+            if discount_percent > 0:
+                final_price = machine.price * (1 - discount_percent / 100)
             
             # Create quotation object
             class QuotationData:
@@ -191,7 +198,7 @@ Actualizar el precio de una máquina.
                     self.clientEmail = None
                     self.clientCompany = None
                     self.notes = f"Cotización generada via Telegram por @{update.effective_user.username or 'usuario'}"
-                    self.applyDiscount = apply_discount
+                    self.discountPercent = discount_percent
             
             quotation_data = QuotationData()
             
@@ -202,7 +209,8 @@ Actualizar el precio de una máquina.
                 client_name=client_name,
                 client_phone=client_phone,
                 notes=quotation_data.notes,
-                discount_applied=apply_discount,
+                discount_applied=discount_percent > 0,
+                discount_percent=discount_percent,
                 final_price=final_price
             )
             db.add(db_quotation)
@@ -222,8 +230,8 @@ Actualizar el precio de una máquina.
                     f"💰 Precio: ${final_price:,.2f}"
                 )
                 
-                if apply_discount:
-                    caption += f"\n🎯 Descuento aplicado: 10%"
+                if discount_percent > 0:
+                    caption += f"\n🎯 Descuento aplicado: {discount_percent:.0f}%"
                 
                 await update.message.reply_document(
                     document=pdf_file,
