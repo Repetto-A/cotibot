@@ -5,7 +5,7 @@ from sqlalchemy.orm import sessionmaker
 from datetime import datetime
 
 # Database setup
-SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://torocojo:v6XMq7eurIA7LEH8oGAtVAhr2RaRK5CJ@dpg-d1stfl6mcj7s73atgjs0-a/agromaq?sslmode=require")
+SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./agromaq_enhanced.db")
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
@@ -35,6 +35,7 @@ class Quotation(Base):
     client_company = Column(String, nullable=True)
     notes = Column(Text, nullable=True)
     discount_applied = Column(Boolean, default=False)
+    discount_percent = Column(Float, default=0.0)  # Nuevo campo para porcentaje de descuento
     final_price = Column(Float)
     created_at = Column(DateTime, default=datetime.utcnow)
 
