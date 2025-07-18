@@ -5,7 +5,7 @@ from sqlalchemy.orm import sessionmaker
 from datetime import datetime
 
 # Database setup
-SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./agromaq_enhanced.db")
+SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://torocojo:v6XMq7eurIA7LEH8oGAtVAhr2RaRK5CJ@dpg-d1stfl6mcj7s73atgjs0-a/agromaq?sslmode=require")
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
