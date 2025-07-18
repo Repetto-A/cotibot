@@ -39,7 +39,7 @@ class QuotationCreate(BaseModel):
     clientEmail: Optional[str] = None
     clientCompany: Optional[str] = None
     notes: Optional[str] = None
-    applyDiscount: bool = False
+    discountPercent: float = 0.0  # Nuevo campo para porcentaje de descuento
 
 # FastAPI app
 app = FastAPI(title="Agromaq Enhanced Quotation System", version="2.0.0")
@@ -159,10 +159,11 @@ async def generate_quote(quotation: QuotationCreate, db: Session = Depends(get_d
     if not machine:
         raise HTTPException(status_code=404, detail="Machine not found")
     
-    # Calculate final price
+    # Calcular precio final con descuento variable
     final_price = machine.price
-    if quotation.applyDiscount:
-        final_price = machine.price * 0.9  # 10% discount
+    discount_percent = getattr(quotation, 'discountPercent', 0.0) or 0.0
+    if discount_percent > 0:
+        final_price = machine.price * (1 - discount_percent / 100)
     
     # Save quotation to database
     db_quotation = Quotation(
@@ -173,7 +174,7 @@ async def generate_quote(quotation: QuotationCreate, db: Session = Depends(get_d
         client_email=quotation.clientEmail,
         client_company=quotation.clientCompany,
         notes=quotation.notes,
-        discount_applied=quotation.applyDiscount,
+        discount_applied=discount_percent > 0,
         final_price=final_price
     )
     db.add(db_quotation)
