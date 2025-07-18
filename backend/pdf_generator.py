@@ -125,6 +125,13 @@ class PDFGenerator:
         price_line = f"{puntos}{price_str}.="
         price_style = ParagraphStyle('Precio', parent=styles['Normal'], alignment=TA_RIGHT, fontSize=13, fontName='Helvetica')
         story.append(Paragraph(price_line, price_style))
+        story.append(Spacer(1, 5))
+        # Mostrar descuento si corresponde
+        discount_percent = getattr(quotation_data, 'discountPercent', 0.0) or 0.0
+        if discount_percent > 0:
+            discount_str = f"Descuento aplicado: {discount_percent:.0f}%"
+            discount_style = ParagraphStyle('Descuento', parent=styles['Normal'], alignment=TA_RIGHT, fontSize=11, textColor=Color(0.8,0.1,0.1))
+            story.append(Paragraph(discount_str, discount_style))
         story.append(Spacer(1, 10))
 
         # 7. Notas y condiciones centradas
