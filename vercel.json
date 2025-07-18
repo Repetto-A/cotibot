@@ -1,0 +1,10 @@
+{
+  "build": {
+    "env": {
+      "VITE_API_URL": "@api_url"
+    }
+  },
+  "env": {
+    "VITE_API_URL": "https://agromaq-api.onrender.com"
+  }
+}

@@ -1,0 +1,24 @@
+services:
+  # Backend API
+  - type: web
+    name: agromaq-backend
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python main.py
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.0
+      - key: DATABASE_URL
+        value: sqlite:///agromaq_enhanced.db
+      - key: TELEGRAM_BOT_TOKEN
+        value: your_telegram_token_here
+
+  # Frontend
+  - type: web
+    name: agromaq-frontend
+    env: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
+    envVars:
+      - key: VITE_API_BASE_URL
+        value: https://agromaq-backend.onrender.com 
